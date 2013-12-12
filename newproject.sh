@@ -1,17 +1,72 @@
 #!/bin/bash
 # First project script
 
-echo "Hey $USER! What type of project do you want to generate?"
-echo "1) Web"
-echo "2) CPP"
-echo ""
-echo "Please enter a number"
-read $NUM 
-if [ $NUM = 1 ]; then 
-    echo "Okay, lets make a Web template."
-    echo "What would you like to name your file as?"
-    read $filename
-    touch $filename
+#!/bin/bash                                                                                                               
+# First project script                                                                                                    
+
+echo "What would you like to name the folder?"
+read foldername
+echo "What would you like to name the file?"
+read filename
+
+
+echo "What type of project do you want to generate?\n                                                                     
+1) .cpp                                                                                                                   
+2) .h                                                                                                                     
+Enter a number"
+read projecttype
+
+if [ $projecttype == 1 ]; then
+    mkdir $foldername
+    cd $foldername
+    touch $filename.cpp
+    mainfile=$filename.cpp
+    echo "                                                                                                                
+//Author: Alec Brownlie                                                                                                   
+                                                                                                                          
+#include <iostream>                                                                                                       
+                                                                                                                          
+using namespace std;                                                                                                      
+                                                                                                                          
+int main ()                                                                                                               
+{                                                                                                                         
+return 0                                                                                                                  
+}" >> $mainfile
+
+
+elif [ $projecttype == 2 ]; then
+
+    mkdir $foldername
+    cd $foldername
+    touch $filename.h
+    mainfile=$filename.h
+    echo"                                                                                                                 
+//Author: Alec Brownlie                                                                                                   
+                                                                                                                          
+#include <iostream>                                                                                                       
+                                                                                                                          
+using namespace std;                                                                                                      
+template <class LT> class $foldername;                                                                                    
+                                                                                                                          
+template \<class LT\>                                                                                                     
+class $filename                                                                                                           
+{                                                                                                                         
+public:                                                                                                                   
+                                                                                                                          
+private:                                                                                                                  
+}                                                                                                                         
+                                                                                                                          
+" >> $mainfile
+fi
+
+
+echo "File name: $mainfile                                                                                                
+Author: $(whoami)                                                                                                         
+Date: $(date)" > README.md
+
+echo DONE
+
+
 
 
 
